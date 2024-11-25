@@ -14,9 +14,19 @@ import {
   LogOut,
   Book,
   Activity,
-  Shield
+  Shield,
+  ClipboardList,
+  Clock,
+  FileSearch,
+  UserCheck,
+  DollarSign,
+  GraduationCap,
+  ScrollText,
+  AlertTriangle,
+  LineChart,
+  Files
 } from 'lucide-react';
-import Modal from '../components/Modal';
+import Modal from '../components/modals/Modal';
 import Calendar from './superadmin/Calendar';
 import Users from './superadmin/Users';
 import Analytics from './superadmin/Analytics';
@@ -28,6 +38,19 @@ import UserManagement from './superadmin/UserManagement';
 import { ResponsiveLine } from '@nivo/line';
 import { ResponsivePie } from '@nivo/pie';
 import { ResponsiveBar } from '@nivo/bar';
+
+// Import audit modals
+import AuditScheduleModal from '../components/modals/auditor/AuditScheduleModal';
+import ActivityLogsModal from '../components/modals/auditor/ActivityLogsModal';
+import AuditSettingsModal from '../components/modals/auditor/AuditSettingsModal';
+import DocumentationModal from '../components/modals/auditor/DocumentationModal';
+import FinancialAuditModal from '../components/modals/auditor/FinancialAuditModal';
+import AcademicComplianceModal from '../components/modals/auditor/AcademicComplianceModal';
+import UserAccessAuditModal from '../components/modals/auditor/UserAccessAuditModal';
+import AuditReportsModal from '../components/modals/auditor/AuditReportsModal';
+import ComplianceTrackingModal from '../components/modals/auditor/ComplianceTrackingModal';
+import IncidentReportsModal from '../components/modals/auditor/IncidentReportsModal';
+import SystemReviewsModal from '../components/modals/auditor/SystemReviewsModal';
 
 interface SidebarItem {
   id: string;
@@ -92,6 +115,86 @@ const SuperAdminSidebar: React.FC<{
       component: <Messages />,
       modalSize: 'xl'
     },
+    
+    
+    // Audit Section
+    { 
+      id: 'audit_schedule', 
+      icon: Clock, 
+      label: 'Audit Schedule',
+      component: <AuditScheduleModal isOpen={true} onClose={() => onItemClick({ id: 'overview', icon: Home, label: 'Overview', component: null })} />,
+      modalSize: 'xl'
+    },
+    { 
+      id: 'activity_logs', 
+      icon: Activity, 
+      label: 'Activity Logs',
+      component: <ActivityLogsModal isOpen={true} onClose={() => onItemClick({ id: 'overview', icon: Home, label: 'Overview', component: null })} />,
+      modalSize: 'xl'
+    },
+    { 
+      id: 'audit_settings', 
+      icon: SettingsIcon, 
+      label: 'Audit Settings',
+      component: <AuditSettingsModal isOpen={true} onClose={() => onItemClick({ id: 'overview', icon: Home, label: 'Overview', component: null })} />,
+      modalSize: 'xl'
+    },
+    { 
+      id: 'documentation', 
+      icon: Files, 
+      label: 'Documentation',
+      component: <DocumentationModal isOpen={true} onClose={() => onItemClick({ id: 'overview', icon: Home, label: 'Overview', component: null })} />,
+      modalSize: 'xl'
+    },
+    { 
+      id: 'financial_audit', 
+      icon: DollarSign, 
+      label: 'Financial Audit',
+      component: <FinancialAuditModal isOpen={true} onClose={() => onItemClick({ id: 'overview', icon: Home, label: 'Overview', component: null })} />,
+      modalSize: 'xl'
+    },
+    { 
+      id: 'academic_compliance', 
+      icon: GraduationCap, 
+      label: 'Academic Compliance',
+      component: <AcademicComplianceModal isOpen={true} onClose={() => onItemClick({ id: 'overview', icon: Home, label: 'Overview', component: null })} />,
+      modalSize: 'xl'
+    },
+    { 
+      id: 'user_access_audit', 
+      icon: UserCheck, 
+      label: 'User Access Audit',
+      component: <UserAccessAuditModal isOpen={true} onClose={() => onItemClick({ id: 'overview', icon: Home, label: 'Overview', component: null })} />,
+      modalSize: 'xl'
+    },
+    { 
+      id: 'audit_reports', 
+      icon: FileSearch, 
+      label: 'Audit Reports',
+      component: <AuditReportsModal isOpen={true} onClose={() => onItemClick({ id: 'overview', icon: Home, label: 'Overview', component: null })} />,
+      modalSize: 'xl'
+    },
+    { 
+      id: 'compliance_tracking', 
+      icon: ClipboardList, 
+      label: 'Compliance Tracking',
+      component: <ComplianceTrackingModal isOpen={true} onClose={() => onItemClick({ id: 'overview', icon: Home, label: 'Overview', component: null })} />,
+      modalSize: 'xl'
+    },
+    { 
+      id: 'incident_reports', 
+      icon: AlertTriangle, 
+      label: 'Incident Reports',
+      component: <IncidentReportsModal isOpen={true} onClose={() => onItemClick({ id: 'overview', icon: Home, label: 'Overview', component: null })} />,
+      modalSize: 'xl'
+    },
+    { 
+      id: 'system_reviews', 
+      icon: LineChart, 
+      label: 'System Reviews',
+      component: <SystemReviewsModal isOpen={true} onClose={() => onItemClick({ id: 'overview', icon: Home, label: 'Overview', component: null })} />,
+      modalSize: 'xl'
+    },
     { 
       id: 'settings', 
       icon: SettingsIcon, 
@@ -105,7 +208,7 @@ const SuperAdminSidebar: React.FC<{
       label: 'Help',
       component: <Help />,
       modalSize: 'lg'
-    }
+    },
   ];
 
   return (
@@ -169,6 +272,11 @@ const SuperAdminDashboard = () => {
   const [activeItem, setActiveItem] = useState<string>('overview');
   const [activeModal, setActiveModal] = useState<SidebarItem | null>(null);
   const [selectedMetric, setSelectedMetric] = useState('overview');
+
+  const handleModalClose = () => {
+    setActiveModal(null);
+    setActiveItem('overview');
+  };
 
   // Close sidebar on mobile when window resizes
   useEffect(() => {
@@ -455,20 +563,21 @@ const SuperAdminDashboard = () => {
               </div>
             </main>
           )}
+
+          {/* Modal Rendering */}
+          {activeModal && activeModal.component && (
+            <Modal
+              isOpen={true}
+              onClose={handleModalClose}
+              title={activeModal.label}
+              size={activeModal.modalSize || 'xl'}
+            >
+              {activeModal.component}
+            </Modal>
+          )}
         </div>
       </div>
 
-      {/* Modal */}
-      {activeModal && activeModal.component && (
-        <Modal
-          isOpen={true}
-          onClose={() => setActiveModal(null)}
-          title={activeModal.label}
-          size={activeModal.modalSize || '2xl'}
-        >
-          {activeModal.component}
-        </Modal>
-      )}
     </div>
   );
 };

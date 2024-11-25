@@ -21,6 +21,8 @@ import {
   AssignmentsModal,
   CommunicationModal,
   FeesModal,
+  CalendarModal,
+  AnnouncementsModal,
 } from '../components/modals/ParentModals';
 
 // Mock data generators for student performance metrics
@@ -31,12 +33,6 @@ const generateGradeData = () => [
   { subject: 'History', current: 90, average: 85 }
 ];
 
-const generateAttendanceData = () => [
-  { month: 'Jan', present: 20, absent: 2, late: 1 },
-  { month: 'Feb', present: 18, absent: 1, late: 2 },
-  { month: 'Mar', present: 21, absent: 0, late: 1 },
-  { month: 'Apr', present: 19, absent: 1, late: 2 }
-];
 
 const generateProgressData = () => [
   {
@@ -74,6 +70,29 @@ const ParentDashboard: React.FC = () => {
 
   const closeModal = () => {
     setActiveModal(null);
+  };
+
+  const renderModalContent = () => {
+    switch (activeModal) {
+      case 'academics':
+        return <AcademicProgressModal isOpen={true} onClose={closeModal} />;
+      case 'attendance':
+        return <AttendanceModal isOpen={true} onClose={closeModal} />;
+      case 'behavior':
+        return <BehaviorModal isOpen={true} onClose={closeModal} />;
+      case 'assignments':
+        return <AssignmentsModal isOpen={true} onClose={closeModal} />;
+      case 'communication':
+        return <CommunicationModal isOpen={true} onClose={closeModal} />;
+      case 'fees':
+        return <FeesModal isOpen={true} onClose={closeModal} />;
+      case 'calendar':
+        return <CalendarModal isOpen={true} onClose={closeModal} />;
+      case 'announcements':
+        return <AnnouncementsModal isOpen={true} onClose={closeModal} />;
+      default:
+        return null;
+    }
   };
 
   return (
@@ -216,12 +235,7 @@ const ParentDashboard: React.FC = () => {
       </div>
 
       {/* Modals */}
-      <AcademicProgressModal isOpen={activeModal === 'academics'} onClose={closeModal} />
-      <AttendanceModal isOpen={activeModal === 'attendance'} onClose={closeModal} />
-      <BehaviorModal isOpen={activeModal === 'behavior'} onClose={closeModal} />
-      <AssignmentsModal isOpen={activeModal === 'assignments'} onClose={closeModal} />
-      <CommunicationModal isOpen={activeModal === 'communication'} onClose={closeModal} />
-      <FeesModal isOpen={activeModal === 'fees'} onClose={closeModal} />
+      {renderModalContent()}
     </div>
   );
 };

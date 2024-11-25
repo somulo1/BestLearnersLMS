@@ -175,17 +175,50 @@ const AuditorDashboard: React.FC = () => {
       </div>
 
       {/* Modals */}
-      <FinancialAuditModal isOpen={activeModal === 'financial'} onClose={handleModalClose} />
-      <AcademicComplianceModal isOpen={activeModal === 'academic'} onClose={handleModalClose} />
-      <UserAccessAuditModal isOpen={activeModal === 'users'} onClose={handleModalClose} />
-      <AuditReportsModal isOpen={activeModal === 'reports'} onClose={handleModalClose} />
-      <ComplianceTrackingModal isOpen={activeModal === 'compliance'} onClose={handleModalClose} />
-      <IncidentReportsModal isOpen={activeModal === 'incidents'} onClose={handleModalClose} />
-      <SystemReviewsModal isOpen={activeModal === 'reviews'} onClose={handleModalClose} />
-      <DocumentationModal isOpen={activeModal === 'documentation'} onClose={handleModalClose} />
-      <AuditScheduleModal isOpen={activeModal === 'schedule'} onClose={handleModalClose} />
-      <ActivityLogsModal isOpen={activeModal === 'logs'} onClose={handleModalClose} />
-      <AuditSettingsModal isOpen={activeModal === 'settings'} onClose={handleModalClose} />
+      <FinancialAuditModal
+        isOpen={activeModal === 'financial'}
+        onClose={handleModalClose}
+      />
+      <AcademicComplianceModal
+        isOpen={activeModal === 'academic'}
+        onClose={handleModalClose}
+      />
+      <UserAccessAuditModal
+        isOpen={activeModal === 'users'}
+        onClose={handleModalClose}
+      />
+      <AuditReportsModal
+        isOpen={activeModal === 'reports'}
+        onClose={handleModalClose}
+      />
+      <ComplianceTrackingModal
+        isOpen={activeModal === 'compliance'}
+        onClose={handleModalClose}
+      />
+      <IncidentReportsModal
+        isOpen={activeModal === 'incidents'}
+        onClose={handleModalClose}
+      />
+      <SystemReviewsModal
+        isOpen={activeModal === 'reviews'}
+        onClose={handleModalClose}
+      />
+      <DocumentationModal
+        isOpen={activeModal === 'documentation'}
+        onClose={handleModalClose}
+      />
+      <AuditScheduleModal
+        isOpen={activeModal === 'schedule'}
+        onClose={handleModalClose}
+      />
+      <ActivityLogsModal
+        isOpen={activeModal === 'logs'}
+        onClose={handleModalClose}
+      />
+      <AuditSettingsModal
+        isOpen={activeModal === 'settings'}
+        onClose={handleModalClose}
+      />
     </div>
   );
 };

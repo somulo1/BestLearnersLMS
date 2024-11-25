@@ -13,7 +13,7 @@ import {
   Menu,
   Home,
   BookOpen,
-  Users,
+  Users as UsersIcon,
   Calendar as CalendarIcon,
   BarChart2,
   MessageSquare,
@@ -31,6 +31,9 @@ import Help from '../components/features/Help';
 import Messages from '../components/features/Messages';
 import Settings from '../components/features/Settings';
 import Calendar from '../components/features/Calendar';
+import Reports from '../components/features/Reports';
+import Users from '../components/features/Users';
+import Courses from '../components/features/Courses';
 
 // Mock data generators
 const generateTimeData = () => {
@@ -82,7 +85,7 @@ const AdminDashboard: React.FC = () => {
   const navigationItems = [
     { id: 'overview', icon: Home, label: 'Overview' },
     { id: 'courses', icon: BookOpen, label: 'Courses' },
-    { id: 'users', icon: Users, label: 'Users' },
+    { id: 'users', icon: UsersIcon, label: 'Users' },
     { id: 'calendar', icon: CalendarIcon, label: 'Calendar' },
     { id: 'reports', icon: BarChart2, label: 'Reports' },
     { id: 'messages', icon: MessageSquare, label: 'Messages' },
@@ -92,12 +95,12 @@ const AdminDashboard: React.FC = () => {
 
   // Quick stats data
   const quickStats = [
-    { id: 1, name: 'Total Students', stat: '1,234', change: '12%', changeType: 'increase', icon: Users },
+    { id: 1, name: 'Total Students', stat: '1,234', change: '12%', changeType: 'increase', icon: UsersIcon },
     { id: 2, name: 'Active Courses', stat: '56', change: '8%', changeType: 'increase', icon: BookOpen },
     { id: 3, name: 'Completion Rate', stat: '92%', change: '5%', changeType: 'increase', icon: BarChart2 },
     { id: 4, name: 'Total Revenue', stat: '$124.5K', change: '15%', changeType: 'increase', icon: Bell },
     { id: 5, name: 'Average Grade', stat: '85%', change: '3%', changeType: 'increase', icon: BarChart2 },
-    { id: 6, name: 'Active Users', stat: '856', change: '10%', changeType: 'increase', icon: Users }
+    { id: 6, name: 'Active Users', stat: '856', change: '10%', changeType: 'increase', icon: UsersIcon }
   ];
 
   const handleNavigation = (itemId: string) => {
@@ -192,6 +195,30 @@ const AdminDashboard: React.FC = () => {
           <Modal isOpen={isModalOpen} onClose={closeModal} title="Calendar" size="2xl">
             <div className="p-4 h-[calc(100vh-200px)]">
               <Calendar />
+            </div>
+          </Modal>
+        );
+      case 'reports':
+        return (
+          <Modal isOpen={isModalOpen} onClose={closeModal} title="Reports" size="2xl">
+            <div className="p-4 h-[calc(100vh-200px)]">
+              <Reports />
+            </div>
+          </Modal>
+        );
+      case 'users':
+        return (
+          <Modal isOpen={isModalOpen} onClose={closeModal} title="Users Management" size="2xl">
+            <div className="p-4 h-[calc(100vh-200px)]">
+              <Users />
+            </div>
+          </Modal>
+        );
+      case 'courses':
+        return (
+          <Modal isOpen={isModalOpen} onClose={closeModal} title="Courses Management" size="2xl">
+            <div className="p-4 h-[calc(100vh-200px)]">
+              <Courses />
             </div>
           </Modal>
         );
