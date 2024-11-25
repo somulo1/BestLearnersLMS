@@ -1,4 +1,0 @@
-/// <reference types="react" />
-import { BoxPlotDatum, BoxPlotItemProps } from './types';
-export declare const BoxPlotItem: <RawDatum extends BoxPlotDatum>({ boxPlot, layout, animatedProps: { borderColor, medianColor, whiskerColor, color, opacity, transform, valueInterval, valueDistance0, valueDistance1, valueDistance3, valueDistance4, }, borderRadius, borderWidth, medianWidth, whiskerWidth, whiskerEndSize, isInteractive, onClick, onMouseEnter, onMouseLeave, setActiveItem, tooltip, isFocusable, ariaLabel, ariaLabelledBy, ariaDescribedBy, }: BoxPlotItemProps<RawDatum>) => JSX.Element;
-//# sourceMappingURL=BoxPlotItem.d.ts.map
