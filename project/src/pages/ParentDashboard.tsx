@@ -23,6 +23,8 @@ import {
   FeesModal,
   CalendarModal,
   AnnouncementsModal,
+  HelpSupportModal,
+  SettingsModal,
 } from '../components/modals/ParentModals';
 
 // Mock data generators for student performance metrics
@@ -32,7 +34,6 @@ const generateGradeData = () => [
   { subject: 'English', current: 88, average: 82 },
   { subject: 'History', current: 90, average: 85 }
 ];
-
 
 const generateProgressData = () => [
   {
@@ -90,6 +91,10 @@ const ParentDashboard: React.FC = () => {
         return <CalendarModal isOpen={true} onClose={closeModal} />;
       case 'announcements':
         return <AnnouncementsModal isOpen={true} onClose={closeModal} />;
+      case 'settings':
+        return <SettingsModal isOpen={true} onClose={closeModal} />;
+      case 'help':
+        return <HelpSupportModal isOpen={true} onClose={closeModal} />;
       default:
         return null;
     }

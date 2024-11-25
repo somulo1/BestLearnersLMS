@@ -20,6 +20,14 @@ import {
   X
 } from 'lucide-react';
 import Modal from '../components/Modal';
+import StudentSchedule from '../components/modals/StudentSchedule';
+import StudentResources from '../components/modals/StudentResources';
+import StudentMessages from '../components/modals/StudentMessages';
+import StudentNotifications from '../components/modals/StudentNotifications';
+import StudentProgress from '../components/modals/StudentProgress';
+import StudentAttendance from '../components/modals/StudentAttendance';
+import StudentSettings from '../components/modals/StudentSettings';
+import StudentAssignments from '../components/modals/StudentAssignments';
 
 // Data generators
 const generateGradeData = () => [
@@ -130,60 +138,6 @@ const StudentDashboard: React.FC = () => {
           </Modal>
         );
 
-      case 'assignments':
-        return (
-          <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Assignments" size="2xl">
-            <div className="space-y-4">
-              <div className="flex flex-wrap gap-4 mb-6">
-                <button className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200 text-sm font-medium">
-                  All Assignments
-                </button>
-                <button className="px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200 text-sm font-medium">
-                  Pending
-                </button>
-                <button className="px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200 text-sm font-medium">
-                  Completed
-                </button>
-              </div>
-              <div className="space-y-4">
-                {Array.from({ length: 5 }).map((_, index) => (
-                  <div 
-                    key={index} 
-                    className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 hover:shadow-md transition-shadow duration-200"
-                  >
-                    <div className="sm:flex justify-between items-start space-y-3 sm:space-y-0">
-                      <div className="flex-1">
-                        <div className="flex items-center">
-                          <div className="p-2 bg-indigo-50 rounded-lg">
-                            <FileText className="w-5 h-5 text-indigo-600" />
-                          </div>
-                          <h3 className="ml-3 text-lg font-semibold">Assignment {index + 1}</h3>
-                        </div>
-                        <p className="text-sm text-gray-600 mt-2">Due Date: {new Date().toLocaleDateString()}</p>
-                        <p className="text-sm text-gray-500 mt-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                          index % 3 === 0 ? 'bg-green-100 text-green-800' :
-                          index % 3 === 1 ? 'bg-yellow-100 text-yellow-800' :
-                          'bg-red-100 text-red-800'
-                        }`}>
-                          {index % 3 === 0 ? 'Completed' :
-                           index % 3 === 1 ? 'In Progress' :
-                           'Due Soon'}
-                        </span>
-                        <button className="px-4 py-2 bg-indigo-50 text-indigo-600 rounded-lg hover:bg-indigo-100 transition-colors duration-200 text-sm font-medium">
-                          View
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </Modal>
-        );
-
       case 'grades':
         return (
           <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Grades" size="2xl">
@@ -234,6 +188,67 @@ const StudentDashboard: React.FC = () => {
           </Modal>
         );
 
+      case 'schedule':
+        return <StudentSchedule isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />;
+      
+      case 'resources':
+        return <StudentResources isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />;
+      
+      case 'messages':
+        return <StudentMessages isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />;
+      
+      case 'notifications':
+        return <StudentNotifications isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />;
+      
+      case 'progress':
+        return <StudentProgress isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />;
+      
+      case 'attendance':
+        return <StudentAttendance isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />;
+      
+      case 'settings':
+        return <StudentSettings isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />;
+      
+      case 'assignments':
+        return <StudentAssignments isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />;
+      
+      case 'help':
+        return (
+          <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Help & Support" size="lg">
+            <div className="space-y-6 p-4">
+              <div className="bg-indigo-50 p-4 rounded-lg">
+                <h3 className="text-lg font-semibold text-indigo-900 mb-2">Need Assistance?</h3>
+                <p className="text-indigo-700">Our support team is here to help you with any questions or issues.</p>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="border border-gray-200 rounded-lg p-4">
+                  <h4 className="font-semibold mb-2">FAQ</h4>
+                  <ul className="space-y-2 text-gray-600">
+                    <li>• How do I submit assignments?</li>
+                    <li>• Where can I find my grades?</li>
+                    <li>• How do I contact my instructors?</li>
+                    <li>• What if I miss a class?</li>
+                  </ul>
+                </div>
+                
+                <div className="border border-gray-200 rounded-lg p-4">
+                  <h4 className="font-semibold mb-2">Contact Support</h4>
+                  <p className="text-gray-600 mb-3">Available Monday-Friday, 9AM-5PM</p>
+                  <div className="space-y-2">
+                    <p className="text-gray-600">Email: support@school.edu</p>
+                    <p className="text-gray-600">Phone: (555) 123-4567</p>
+                  </div>
+                </div>
+                
+                <button className="w-full py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200">
+                  Contact Support
+                </button>
+              </div>
+            </div>
+          </Modal>
+        );
+      
       default:
         return null;
     }
